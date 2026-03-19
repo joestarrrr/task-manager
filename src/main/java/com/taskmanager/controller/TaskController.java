@@ -20,9 +20,13 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public Task addTasks(@RequestBody Task Task) {
-        repository.save(Task);
-        return Task;
+    public Task addTasks(@RequestBody Task task) {
+        repository.save(task);
+        return task;
     }
 
+    @DeleteMapping("/tasks/{id}")
+    public void deleteTask(@PathVariable long id) {
+        repository.delete(id);
+    }
 }

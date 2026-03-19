@@ -24,4 +24,8 @@ public class TaskRepository {
     public void save(Task task) {
         tasks.add(task);
     }
+
+    public void delete(long id) {
+        tasks.removeIf(task -> task.getId() == id);
+    }
 }
