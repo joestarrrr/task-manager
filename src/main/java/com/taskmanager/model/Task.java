@@ -15,6 +15,12 @@ public class Task {
         this.id = id;
     }
 
+    public Task(String name, String description, boolean completed) {
+        this.name = name;
+        this.description = description;
+        this.completed = completed;
+    }
+
     public boolean isCompleted() {
         return completed;
     }

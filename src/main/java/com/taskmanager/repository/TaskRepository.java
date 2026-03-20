@@ -8,13 +8,10 @@ import java.util.List;
 
 @Repository
 public class TaskRepository {
-
+    private long currentId = 1;
     private final List<Task> tasks = new ArrayList<>();
 
     public TaskRepository() {
-        tasks.add(new Task("Study Spring", true, "Prepare for lecture", 1));
-        tasks.add(new Task("Gym", false, "Pre workout", 2));
-        tasks.add(new Task("Weekend assignment", false, "plz no", 3));
     }
 
     public List<Task> findAll() {
@@ -22,6 +19,9 @@ public class TaskRepository {
     }
 
     public void save(Task task) {
+        if (task.getId() == 0) {
+            task.setId(currentId++);
+        }
         tasks.add(task);
     }
 

@@ -1,32 +1,33 @@
 package com.taskmanager.controller;
 
 import com.taskmanager.model.Task;
-import com.taskmanager.repository.TaskRepository;
+import com.taskmanager.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class TaskController {
-   private final TaskRepository repository;
 
-    public TaskController(TaskRepository repository) {
-        this.repository = repository;
+    private final TaskService service;
+
+    public TaskController(TaskService service) {
+        this.service= service;
     }
 
     @GetMapping("/tasks")
     public List<Task> getTasks() {
-        return repository.findAll();
+        return service.getTasks();
     }
 
     @PostMapping("/tasks")
     public Task addTasks(@RequestBody Task task) {
-        repository.save(task);
+        service.addTasks(task);
         return task;
     }
 
     @DeleteMapping("/tasks/{id}")
     public void deleteTask(@PathVariable long id) {
-        repository.delete(id);
+        service.deleteTask(id);
     }
 }
